@@ -37,8 +37,8 @@ def huffman(lista):
     lista = datos(lista)
     arbol = lista
     while len(arbol) > 1:
-        der = lista.pop(0)
         izq = lista.pop(0)
+        der = lista.pop(0)
         freq = der.freq + izq.freq
         nodo = Nodo(freq, der, izq)
         arbol.append(nodo)
