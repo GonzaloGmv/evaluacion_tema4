@@ -16,11 +16,11 @@ def coctel(lista):
         control = False
         for j in range(i, 0, -1):
             if lista[j].freq < lista[j - 1].freq:
-                lista[j].freq, lista[j - 1].freq = lista[j - 1].freq, lista[j].freq
+                lista[j], lista[j - 1] = lista[j - 1], lista[j]
                 control = True
         for j in range(i):
             if lista[j].freq > lista[j + 1].freq:
-                lista[j].freq, lista[j + 1].freq = lista[j + 1].freq, lista[j].freq
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
                 control = True
         if control == False:
             break
