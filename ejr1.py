@@ -1,15 +1,13 @@
+import sys
 tabla = {'A':0.2, 'F':0.17, '1':0.13, '3':0.21, '0':0.05, 'M':0.09, 'T':0.15}
 
 class Nodo:
-    def __init__(self, freq, der, izq):
+    def __init__(self, letra, freq, der, izq, valor):
         self.freq = freq
         self.der = der
         self.izq = izq
-
-class Letra:
-    def __init__(self, letra, freq):
         self.letra = letra
-        self.freq = freq
+        self.valor = valor
 
 def coctel(lista):
     for i in range(len(lista) - 1, 0, -1):
@@ -29,7 +27,7 @@ def coctel(lista):
 def datos(tabla):
     letras = []
     for i in tabla.keys():
-        letras.append(Letra(i, tabla[i]))
+        letras.append(Nodo(i, tabla[i], None, None, None))
     coctel(letras)
     return letras
 
@@ -38,11 +36,35 @@ def huffman(lista):
     arbol = lista
     while len(arbol) > 1:
         izq = lista.pop(0)
+        izq.valor = '0'
         der = lista.pop(0)
+        der.valor = '1'
         freq = der.freq + izq.freq
-        nodo = Nodo(freq, der, izq)
+        nodo = Nodo(None, freq, der, izq, None)
         arbol.append(nodo)
         coctel(arbol)
     return arbol
 
-arbol = huffman(tabla)
+raiz = huffman(tabla)
+
+def func(mensaje):
+    for i in mensaje:
+        leer(i, raiz[0], str())
+
+def leer(letra, arbol, valor):
+    if arbol != None:
+        if arbol.valor != None:
+            valor += arbol.valor
+
+        if letra != arbol.letra:
+            leer(letra, arbol.izq, valor)
+            leer(letra, arbol.der, valor)
+        else:
+            sol = valor
+            if sol != None:
+                print(sol)
+            
+        
+func('AF')
+
+
