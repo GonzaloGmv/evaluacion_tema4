@@ -60,19 +60,21 @@ def buscar_letra(letra, arbol, valor):
             print(valor)
 
 
-def descomprimir(arbol, mensaje, i):
-    if arbol.valor != None:
-        if mensaje[i] == arbol.valor and arbol.der != None:
-            descomprimir(arbol.izq, mensaje, i+1)
-            descomprimir(arbol.der, mensaje, i+1)
-        elif arbol.der == None and mensaje[i] == arbol.valor:
-            print(arbol.letra)
-    else:
-        descomprimir(arbol.izq, mensaje, i)
-        descomprimir(arbol.der, mensaje, i)
+def descomprimir(raiz, arbol, mensaje, i):
+    if i <= len(mensaje)-1:
+        if arbol.valor != None:
+            if mensaje[i] == arbol.valor and arbol.der != None:
+                descomprimir(raiz, arbol.izq, mensaje, i+1)
+                descomprimir(raiz, arbol.der, mensaje, i+1)
+            elif arbol.der == None and mensaje[i] == arbol.valor:
+                print(arbol.letra)
+                descomprimir(raiz, raiz, mensaje, i+1)
+        else:
+            descomprimir(raiz, arbol.izq, mensaje, i)
+            descomprimir(raiz, arbol.der, mensaje, i)
 
 
 raiz = huffman(tabla)  
 comprimir('AM31')
-descomprimir(raiz[0], '00', 0)
+descomprimir(raiz[0], raiz[0], '00101101100', 0)
 
