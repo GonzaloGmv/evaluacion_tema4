@@ -44,22 +44,35 @@ def huffman(lista):
         coctel(arbol)
     return arbol
 
-def ejr1(mensaje):
-    raiz = huffman(tabla)  
+def comprimir(mensaje):
     for i in mensaje:
-        leer(i, raiz[0], str())
+        buscar_letra(i, raiz[0], str())
 
-def leer(letra, arbol, valor):
+def buscar_letra(letra, arbol, valor):
     if arbol != None:
         if arbol.valor != None:
             valor += arbol.valor
 
         if letra != arbol.letra:
-            leer(letra, arbol.izq, valor)
-            leer(letra, arbol.der, valor)
+            buscar_letra(letra, arbol.izq, valor)
+            buscar_letra(letra, arbol.der, valor)
         else:
             print(valor)
-            
-ejr1('AM01')
 
+
+def descomprimir(arbol, mensaje, i):
+    if arbol.valor != None:
+        if mensaje[i] == arbol.valor and arbol.der != None:
+            descomprimir(arbol.izq, mensaje, i+1)
+            descomprimir(arbol.der, mensaje, i+1)
+        elif arbol.der == None and mensaje[i] == arbol.valor:
+            print(arbol.letra)
+    else:
+        descomprimir(arbol.izq, mensaje, i)
+        descomprimir(arbol.der, mensaje, i)
+
+
+raiz = huffman(tabla)  
+comprimir('AM31')
+descomprimir(raiz[0], '00', 0)
 
