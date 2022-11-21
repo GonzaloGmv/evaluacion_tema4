@@ -1,4 +1,3 @@
-import sys
 tabla = {'A':0.2, 'F':0.17, '1':0.13, '3':0.21, '0':0.05, 'M':0.09, 'T':0.15}
 
 class Nodo:
@@ -45,9 +44,8 @@ def huffman(lista):
         coctel(arbol)
     return arbol
 
-raiz = huffman(tabla)
-
-def func(mensaje):
+def ejr1(mensaje):
+    raiz = huffman(tabla)  
     for i in mensaje:
         leer(i, raiz[0], str())
 
@@ -60,11 +58,8 @@ def leer(letra, arbol, valor):
             leer(letra, arbol.izq, valor)
             leer(letra, arbol.der, valor)
         else:
-            sol = valor
-            if sol != None:
-                print(sol)
+            print(valor)
             
-        
-func('AF')
+ejr1('AM01')
 
 
