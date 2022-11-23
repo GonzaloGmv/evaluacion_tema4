@@ -44,9 +44,12 @@ def huffman(lista):
         coctel(arbol)
     return arbol
 
-def comprimir(mensaje):
+def comprimir(mensaje, raiz):
     for i in mensaje:
-        buscar_letra(i, raiz[0], str())
+        if i in tabla:
+            buscar_letra(i, raiz[0], str())
+        else:
+            print(i, 'no es un caracter codificable')
 
 def buscar_letra(letra, arbol, valor):
     if arbol != None:
@@ -72,9 +75,3 @@ def descomprimir(raiz, arbol, mensaje, i):
         else:
             descomprimir(raiz, arbol.izq, mensaje, i)
             descomprimir(raiz, arbol.der, mensaje, i)
-
-
-raiz = huffman(tabla)  
-comprimir('AM31')
-descomprimir(raiz[0], raiz[0], '00101101100', 0)
-
