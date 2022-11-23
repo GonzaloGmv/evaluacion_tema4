@@ -1,6 +1,7 @@
 import pandas as pd
 
 df = pd.read_csv('pokemon.csv')
+df.rename(columns={'Type 1':'Type'}, inplace=True)
 del([df['Type 2'], df['Total'], df['HP'], df['Attack'], df['Defense'], df['Sp. Atk'], df['Sp. Def'], df['Speed'], df['Generation'], df['Legendary']])
 deb1 = []
 deb2 = []
@@ -8,7 +9,7 @@ deb3 = []
 deb4 = []
 deb5 = []
 
-for i in df['Type 1']:
+for i in df['Type']:
     if i == 'Grass':
         deb1.append('Ice')
         deb2.append('Flying')
