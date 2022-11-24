@@ -39,7 +39,7 @@ def crear_pokemons(df):
     pokemons = []
     for i in range(len(df)):
         pokemons.append(Pokemon(df.iloc[i]['#'], df.iloc[i]['Name'], df.iloc[i]['Type'], df.iloc[i]['Debilidad 1'], df.iloc[i]['Debilidad 2'], df.iloc[i]['Debilidad 3'], df.iloc[i]['Debilidad 4'], df.iloc[i]['Debilidad 5']))
-    random.shuffle(pokemons)
+    # random.shuffle(pokemons)
     # Esto lo hago porque el ejercicio dice que los pokemons están desordenados
     return pokemons
 
@@ -66,22 +66,45 @@ def arbol(atributo):
     nodos = []
     for i in lista:
         nodos.append(crear_nodo(atributo, None, None, i))
-    while len(nodos) > 1:
-        a = 0
-        if len(nodos) == 2:
-            izq = nodos.pop(a)
-            der = nodos.pop(a)
-            raiz = crear_nodo(atributo, izq, der, None)
-            nodos.append(raiz)
+    a = -1
+    nodo = crear_nodo(atributo, None, None, None)
+    for i in nodos:
+        a += 1
+        nodo = agregar(nodo, i, a)
+    return nodo
+
+def agregar(nodo, pokemon, a):
+    if nodo != None:
+        if a == 0:
+            nodo.izq = pokemon
         else:
-            while a <= len(nodos)-3:
-                izq = nodos.pop(a)
-                der = nodos.pop(a)
-                nodos[a].izq = izq
-                nodos[a].der = der
-                a += 1
-    return nodos
+            if nodo.izq == None:
+                nodo.izq = pokemon
+            elif nodo.der == None:
+                nodo.der = pokemon
+            else:
+                if a%2 == 1:
+                    agregar(nodo.izq, pokemon, a)
+                else:
+                    agregar(nodo.der, pokemon, a)
+    return nodo
 
 arbol_nombre = arbol('Name')
 arbol_numero = arbol('#')
 arbol_tipo = arbol('Type')
+
+def buscar_numero(arbol, numero):
+    if numero < 1 or numero > 721:
+        print('Ese numero no corresponde a ningun pokemon')
+    else: 
+        if arbol != None:
+            if numero != arbol.numero:
+                buscar_numero(arbol.izq, numero)
+                buscar_numero(arbol.der, numero)
+            else:
+                pokemon = arbol.pokemon
+                print('Numero: ', pokemon.numero)
+                print('Nombre: ', pokemon.nombre)
+                print('Tipo: ', pokemon.tipo)
+
+buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: '))) 
