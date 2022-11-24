@@ -135,12 +135,28 @@ def buscar_tipo(arbol, tipo):
             buscar_tipo(arbol.izq, tipo)
             buscar_tipo(arbol.der, tipo)
 
+def listado_ascendente(raiz, arbol, i):
+    if arbol != None:
+        if arbol.numero != i:
+            listado_ascendente(raiz, arbol.izq, i)
+            listado_ascendente(raiz, arbol.der, i)
+        else:
+            pokemon = arbol.pokemon
+            print('Numero: ', pokemon.numero)
+            print('Nombre: ', pokemon.nombre)
+            print('Tipo: ', pokemon.tipo, '\n')
+            listado_ascendente(raiz, raiz, i+1)
 
 arbol_nombre = arbol('Name')
 arbol_numero = arbol('#')
 arbol_tipo = arbol('Type')
 
-
+'''
 buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: ')))
 buscar_nombre(arbol_nombre, input('Escriba el nombre del pokemon que desea encontrar: '))
 buscar_tipo(arbol_tipo, input('Escriba el tipo de los pokemons que desea encontrar: '))
+'''
+try:
+    listado_ascendente(arbol_numero, arbol_numero, 1)
+except RecursionError:
+    print('No se puede seguir con el listado, hay demasiados pokemons. RecursionError: maximum recursion depth exceeded. ')
