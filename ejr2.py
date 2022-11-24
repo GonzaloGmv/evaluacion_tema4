@@ -151,11 +151,10 @@ arbol_nombre = arbol('Name')
 arbol_numero = arbol('#')
 arbol_tipo = arbol('Type')
 
-'''
+
 buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: ')))
 buscar_nombre(arbol_nombre, input('Escriba el nombre del pokemon que desea encontrar: '))
 buscar_tipo(arbol_tipo, input('Escriba el tipo de los pokemons que desea encontrar: '))
-'''
 try:
     listado_ascendente(arbol_numero, arbol_numero, 1)
 except RecursionError:
