@@ -101,7 +101,7 @@ def buscar_numero(arbol, numero):
                 pokemon = arbol.pokemon
                 print('Numero: ', pokemon.numero)
                 print('Nombre: ', pokemon.nombre)
-                print('Tipo: ', pokemon.tipo)
+                print('Tipo: ', pokemon.tipo, '\n')
 
 def buscar_nombre(arbol, nombre):
     if arbol != None:
@@ -111,7 +111,7 @@ def buscar_nombre(arbol, nombre):
                 pokemon = arbol.pokemon
                 print('Numero: ', pokemon.numero)
                 print('Nombre: ', pokemon.nombre)
-                print('Tipo: ', pokemon.tipo)
+                print('Tipo: ', pokemon.tipo, '\n')
             else:
                 buscar_nombre(arbol.izq, nombre)
                 buscar_nombre(arbol.der, nombre)
