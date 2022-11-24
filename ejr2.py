@@ -89,10 +89,6 @@ def agregar(nodo, pokemon, a):
                     agregar(nodo.der, pokemon, a)
     return nodo
 
-arbol_nombre = arbol('Name')
-arbol_numero = arbol('#')
-arbol_tipo = arbol('Type')
-
 def buscar_numero(arbol, numero):
     if numero < 1 or numero > 721:
         print('Ese numero no corresponde a ningun pokemon')
@@ -107,4 +103,27 @@ def buscar_numero(arbol, numero):
                 print('Nombre: ', pokemon.nombre)
                 print('Tipo: ', pokemon.tipo)
 
-buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: '))) 
+def buscar_nombre(arbol, nombre):
+    if arbol != None:
+        if arbol.nombre != None:
+            arbol.nombre = arbol.nombre.lower()
+            if nombre in arbol.nombre:
+                pokemon = arbol.pokemon
+                print('Numero: ', pokemon.numero)
+                print('Nombre: ', pokemon.nombre)
+                print('Tipo: ', pokemon.tipo)
+            else:
+                buscar_nombre(arbol.izq, nombre)
+                buscar_nombre(arbol.der, nombre)
+        else:
+            buscar_nombre(arbol.izq, nombre)
+            buscar_nombre(arbol.der, nombre)
+        
+
+
+arbol_nombre = arbol('Name')
+arbol_numero = arbol('#')
+arbol_tipo = arbol('Type')
+
+buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: ')))
+buscar_nombre(arbol_nombre, 'bul')
