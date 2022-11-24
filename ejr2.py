@@ -39,7 +39,7 @@ def crear_pokemons(df):
     pokemons = []
     for i in range(len(df)):
         pokemons.append(Pokemon(df.iloc[i]['#'], df.iloc[i]['Name'], df.iloc[i]['Type'], df.iloc[i]['Debilidad 1'], df.iloc[i]['Debilidad 2'], df.iloc[i]['Debilidad 3'], df.iloc[i]['Debilidad 4'], df.iloc[i]['Debilidad 5']))
-    # random.shuffle(pokemons)
+    random.shuffle(pokemons)
     # Esto lo hago porque el ejercicio dice que los pokemons están desordenados
     return pokemons
 
