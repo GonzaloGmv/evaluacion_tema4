@@ -98,20 +98,18 @@ def buscar_numero(arbol, numero):
                 buscar_numero(arbol.izq, numero)
                 buscar_numero(arbol.der, numero)
             else:
-                pokemon = arbol.pokemon
-                print('Numero: ', pokemon.numero)
-                print('Nombre: ', pokemon.nombre)
-                print('Tipo: ', pokemon.tipo, '\n')
+                print('Numero: ', arbol.pokemon.numero)
+                print('Nombre: ', arbol.pokemon.nombre)
+                print('Tipo: ', arbol.pokemon.tipo, '\n')
 
 def buscar_nombre(arbol, nombre):
     if arbol != None:
         if arbol.nombre != None:
             arbol.nombre = arbol.nombre.lower()
             if nombre in arbol.nombre:
-                pokemon = arbol.pokemon
-                print('Numero: ', pokemon.numero)
-                print('Nombre: ', pokemon.nombre)
-                print('Tipo: ', pokemon.tipo, '\n')
+                print('Numero: ', arbol.pokemon.numero)
+                print('Nombre: ', arbol.pokemon.nombre)
+                print('Tipo: ', arbol.pokemon.tipo, '\n')
                 buscar_nombre(arbol.izq, nombre)
                 buscar_nombre(arbol.der, nombre)
             else:
@@ -128,10 +126,9 @@ def buscar_tipo(arbol, tipo):
             buscar_tipo(arbol.izq, tipo)
             buscar_tipo(arbol.der, tipo)
         else:
-            pokemon = arbol.pokemon
-            print('Numero: ', pokemon.numero)
-            print('Nombre: ', pokemon.nombre)
-            print('Tipo: ', pokemon.tipo, '\n')
+            print('Numero: ', arbol.pokemon.numero)
+            print('Nombre: ', arbol.pokemon.nombre)
+            print('Tipo: ', arbol.pokemon.tipo, '\n')
             buscar_tipo(arbol.izq, tipo)
             buscar_tipo(arbol.der, tipo)
 
@@ -141,21 +138,49 @@ def listado_ascendente(raiz, arbol, i):
             listado_ascendente(raiz, arbol.izq, i)
             listado_ascendente(raiz, arbol.der, i)
         else:
-            pokemon = arbol.pokemon
-            print('Numero: ', pokemon.numero)
-            print('Nombre: ', pokemon.nombre)
-            print('Tipo: ', pokemon.tipo, '\n')
+            print('Numero: ', arbol.pokemon.numero)
+            print('Nombre: ', arbol.pokemon.nombre)
+            print('Tipo: ', arbol.pokemon.tipo, '\n')
             listado_ascendente(raiz, raiz, i+1)
+
+def buscar_deb(arbol, tipo):
+    if arbol != None:
+        if arbol.pokemon != None:
+            if arbol.pokemon.deb1 != tipo and arbol.pokemon.deb2 != tipo and arbol.pokemon.deb3 != tipo and arbol.pokemon.deb4 != tipo and arbol.pokemon.deb5 != tipo:
+                buscar_deb(arbol.izq, tipo)
+                buscar_deb(arbol.der, tipo)
+            else:
+                print('Numero: ', arbol.pokemon.numero)
+                print('Nombre: ', arbol.pokemon.nombre)
+                print('Tipo: ', arbol.pokemon.tipo, '\n')
+                buscar_deb(arbol.izq, tipo)
+                buscar_deb(arbol.der, tipo)
+        else:
+            buscar_deb(arbol.izq, tipo)
+            buscar_deb(arbol.der, tipo)
 
 arbol_nombre = arbol('Name')
 arbol_numero = arbol('#')
 arbol_tipo = arbol('Type')
 
-
 buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: ')))
+
 buscar_nombre(arbol_nombre, input('Escriba el nombre del pokemon que desea encontrar: '))
+
 buscar_tipo(arbol_tipo, input('Escriba el tipo de los pokemons que desea encontrar: '))
+
+input('Pulse intro para seguir con el siguiente apartado ')
 try:
     listado_ascendente(arbol_numero, arbol_numero, 1)
 except RecursionError:
     print('No se puede seguir con el listado, hay demasiados pokemons. RecursionError: maximum recursion depth exceeded. ')
+
+input('Pulse intro para seguir con el siguiente apartado ')
+buscar_nombre(arbol_nombre, 'lycanroc')
+buscar_nombre(arbol_nombre, 'jolteon')
+buscar_nombre(arbol_nombre, 'tyrantrum')
+print('Utilizando la funcion "buscar_nombre(), vemos que Lycanroc no esta en este dataset, que Jolteon es tipo "Electric", y que "Tyrantrum" es tipo "Rock.')
+input('Pulse intro para buscar los pokemons debiles frente a Jolteon ')
+buscar_deb(arbol_tipo, 'Electric')
+input('Pulse intro para buscar los pokemons debiles frente a Tyrantrum ')
+buscar_deb(arbol_tipo, 'Rock')
