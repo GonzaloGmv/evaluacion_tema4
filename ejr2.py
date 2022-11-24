@@ -112,18 +112,35 @@ def buscar_nombre(arbol, nombre):
                 print('Numero: ', pokemon.numero)
                 print('Nombre: ', pokemon.nombre)
                 print('Tipo: ', pokemon.tipo, '\n')
+                buscar_nombre(arbol.izq, nombre)
+                buscar_nombre(arbol.der, nombre)
             else:
                 buscar_nombre(arbol.izq, nombre)
                 buscar_nombre(arbol.der, nombre)
         else:
             buscar_nombre(arbol.izq, nombre)
             buscar_nombre(arbol.der, nombre)
-        
+
+def buscar_tipo(arbol, tipo):
+    tipo = tipo.capitalize()
+    if arbol != None:
+        if tipo != arbol.tipo:
+            buscar_tipo(arbol.izq, tipo)
+            buscar_tipo(arbol.der, tipo)
+        else:
+            pokemon = arbol.pokemon
+            print('Numero: ', pokemon.numero)
+            print('Nombre: ', pokemon.nombre)
+            print('Tipo: ', pokemon.tipo, '\n')
+            buscar_tipo(arbol.izq, tipo)
+            buscar_tipo(arbol.der, tipo)
 
 
 arbol_nombre = arbol('Name')
 arbol_numero = arbol('#')
 arbol_tipo = arbol('Type')
 
+
 buscar_numero(arbol_numero, int(input('Escriba el numero del pokemon que desea encontrar: ')))
-buscar_nombre(arbol_nombre, 'bul')
+buscar_nombre(arbol_nombre, input('Escriba el nombre del pokemon que desea encontrar: '))
+buscar_tipo(arbol_tipo, input('Escriba el tipo de los pokemons que desea encontrar: '))
