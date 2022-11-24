@@ -1,7 +1,7 @@
 import pandas as pd
 
-def limpiar():
-    df = pd.read_csv('pokemon.csv')
+def limpiar(archivo):
+    df = pd.read_csv(archivo)
     df.rename(columns={'Type 1':'Type'}, inplace=True)
     del([df['Type 2'], df['Total'], df['HP'], df['Attack'], df['Defense'], df['Sp. Atk'], df['Sp. Def'], df['Speed'], df['Generation'], df['Legendary']])
     deb1 = []
