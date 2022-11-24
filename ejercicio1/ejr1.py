@@ -45,6 +45,7 @@ def huffman(lista):
     return arbol
 
 def comprimir(mensaje, raiz):
+    mensaje = mensaje.upper()
     for i in mensaje:
         if i in tabla:
             buscar_letra(i, raiz[0], str())
