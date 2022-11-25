@@ -77,4 +77,3 @@ insertar_arista(12600, nodo_taj_mahal, nodo_cristo_redentor)
 insertar_arista(10800, nodo_machu_picchu, nodo_coliseo)
 insertar_arista(4700, nodo_machu_picchu, nodo_cristo_redentor)
 insertar_arista(7300, nodo_coliseo, nodo_cristo_redentor)
-1
