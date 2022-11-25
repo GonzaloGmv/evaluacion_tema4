@@ -7,7 +7,7 @@ class Maravilla:
 class Grafo:
     def __init__(self):
         self.vertices = []
-        self.tamanio = len(self.vertices)
+        self.tamanio = 0
 
 class NodoArista:
     def __init__(self, distancia, destino):
@@ -18,13 +18,15 @@ class NodoVertice:
     def __init__(self, info):
         self.info = info
         self.aristas = []
+        self.tamanio = 0
+
 
 # se llaman origen y destino pero al no ser dirigido da igual cual sea cada uno.
 def insertar_arista(distancia, origen, destino):
     arista = NodoArista(distancia, destino)
-    origen.adyacentes.append(arista)
+    origen.aristas.append(arista)
     arista = NodoArista(distancia, origen)
-    destino.adyacentes.append(arista)
+    destino.aristas.append(arista)
 
 
 #creamos las maravillas como objetos
@@ -54,6 +56,7 @@ maravillas.vertices.append(nodo_taj_mahal)
 maravillas.vertices.append(nodo_machu_picchu)
 maravillas.vertices.append(nodo_coliseo)
 maravillas.vertices.append(nodo_cristo_redentor)
+maravillas.tamanio = len(maravillas.vertices)
 
 #creamos las aristas
 insertar_arista(12800, nodo_chichen_itza, nodo_muralla_china)
@@ -77,3 +80,10 @@ insertar_arista(12600, nodo_taj_mahal, nodo_cristo_redentor)
 insertar_arista(10800, nodo_machu_picchu, nodo_coliseo)
 insertar_arista(4700, nodo_machu_picchu, nodo_cristo_redentor)
 insertar_arista(7300, nodo_coliseo, nodo_cristo_redentor)
+nodo_chichen_itza.tamanio = len(nodo_chichen_itza.aristas)
+nodo_muralla_china.tamanio = len(nodo_muralla_china.aristas)
+nodo_ciudad_petra.tamanio = len(nodo_ciudad_petra.aristas)
+nodo_taj_mahal.tamanio = len(nodo_taj_mahal.aristas)
+nodo_machu_picchu.tamanio = len(nodo_machu_picchu.aristas)
+nodo_coliseo.tamanio = len(nodo_coliseo.aristas)
+nodo_cristo_redentor.tamanio = len(nodo_cristo_redentor.aristas)
